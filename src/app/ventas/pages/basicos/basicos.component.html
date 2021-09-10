@@ -1,0 +1,84 @@
+
+
+<div class="text-layout">
+    <h1>Pipes Básicos</h1>
+    <p>
+        Pipes incluídos en Angular - Usualmente en el Common Module.
+    </p>
+</div>
+
+<!-- Després d'instal·lar primeflex (semblant a bootstrap en columnes) https://primefaces.org/primeng/showcase/#/primeflex  -->
+<!-- Classes de primeflex. A partir de la versió 3 de Primeflex, ja no inclou la p davant (p-grid) -->
+<div class="grid">
+    <div class="col-4">
+        <p-card 
+            header="uppercase" 
+            [subheader]="nombreLower |uppercase"
+        ></p-card> <!-- primeNg Module, inclòs a ventas.module -->
+    </div>
+    <div class="col-4">
+        <p-card 
+            header="lowercase" 
+            [subheader]="nombreLower |lowercase"
+        ></p-card> <!-- primeNg Module, inclòs a ventas.module -->
+    </div>
+    <div class="col-4">
+        <p-card 
+            header="titleCase" 
+            [subheader]="nombreLower |titlecase"
+        ></p-card> <!-- primeNg Module, inclòs a ventas.module -->
+    </div>
+</div>
+
+<!-- Pipe Date -->
+<!-- https://angular.io/api/common/DatePipe -->
+<div class="text-layout">
+    <h1>Date | Fecha | Pipe</h1>
+    <p>
+        Pipe para mostrar las fechas.
+    </p>
+</div>
+
+<div class="grid"> <!-- Aquest Pipe apareix en espanyol perquè l'app.module hi ha configuracions del localEs -->
+    <div class="col-6">
+        <p-card >
+            <ul>
+                <li>fecha</li>
+                <li>fecha | date</li>
+                <li>fecha | date:'short'</li>
+                <li>fecha | date:'long'</li>
+                <li>fecha | date:'shortTime'</li>
+                <li>fecha | date:'MMMM'</li>
+                <li>fecha | date:'MMMM dd, yyyy'</li>
+            </ul>
+
+            <hr>
+            <ul>
+                <li>fecha | date:'long':'GMT-6'</li>
+                <li>fecha | date:'long':'GMT-4'</li>
+                <li>fecha | date:'long':'GMT-5':'fr'</li>
+            </ul>
+        </p-card> <!-- primeNg Module, inclòs a ventas.module -->
+    </div>
+    <div class="col-6"> 
+        <p-card>
+            <ul>
+                <li>{{fecha}}</li>
+                <li>{{fecha | date}}</li>
+                <li>{{fecha | date:'short'}}</li>
+                <li>{{fecha | date:'long'}}</li>
+                <li>{{fecha | date:'shortTime'}}</li>
+                <li>{{fecha | date:'MMMM'}}</li>
+                <li>{{fecha | date:'MMMM dd, yyyy'}}</li>
+            </ul>
+
+            <hr>
+            <ul>
+                <li>{{fecha | date:'long':'GMT-6'}}</li>
+                <li>{{fecha | date:'long':'GMT-4'}}</li>
+                <li>{{fecha | date:'long':'GMT-5':'fr'}}</li> <!-- Es pot utilitzar fr perquè a app.module.ts hem importat el francès, també -->
+                <li>{{fecha | date:'long':'GMT-5':'en'}}</li> <!-- Anglès no fa falta importar-lo -->
+            </ul>
+        </p-card> <!-- primeNg Module, inclòs a ventas.module -->
+    </div>
+</div>

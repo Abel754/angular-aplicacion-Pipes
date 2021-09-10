@@ -1,0 +1,74 @@
+<div class="text-layout"> 
+    <h1>Pipes Personalizados</h1>
+    <p>
+        Pipes creados por {{'mi'| mayusculas:enMayusculas}} <!-- Pipe creat per mi importat a ventas.module.ts. Rebrà dos paràmetres, l'string que volem retornar i si enviem true, posarà en majúscules, false deixarà normal -->
+    </p>
+
+    <h3>Tabla que ordena los valores mediante un Pipe creado (manual)</h3>
+    
+</div>
+
+<p-toolbar> <!-- Toolbar importat a  prime-ng.module -->
+    <div class="p-toolbar-group-left"></div>
+    
+    <div class="p-toolbar-group-right">
+        <button class="mr-1 p-button-warning" (click)="cambiarMayusculas()" pButton>
+            Toggle Mayúsculas
+        </button>
+        <button (click)="cambiarOrdenar('nombre')" pButton icon="pi pi-sort" label="Por nombre" class="mr-1"></button>
+        <button (click)="cambiarOrdenar('vuela')" pButton icon="pi pi-sort" label="Vuela" class="mr-1 p-button-success"></button>
+        <button (click)="cambiarOrdenar('color')" pButton icon="pi pi-sort" label="Por color" class="mr-1 p-button-help"></button>
+    </div>
+</p-toolbar>
+
+<!-- Taula que ordena els valors mitjançant el Pipe Ordenar (manualment) -->
+<div class="grid">
+    <div class="col mt-2">
+        <p-table [value]="heroes | ordenar:ordenarPor" responsiveLayout="scroll"> <!-- heroes és una variable de ordenar.component i el pipe Ordenar -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Vuela</th>
+                    <th>Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-heroe>
+                <tr>
+                    <td>{{heroe.nombre}}</td>
+                    <td>{{heroe.vuela | vuela | titlecase }}</td> <!-- Crido al Pipe vuela creat a Pipes -->
+                    <td>{{heroe.color}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<div class="text-layout"> 
+
+    <h3>Tabla que ordena los valores mediante tablas de PrimeNg (automático)</h3>
+    
+</div>
+<!-- Taula que ja ordena els valors amb el codi que proporciona PrimeNg -->
+<!-- https://primefaces.org/primeng/showcase/#/table/sort -->
+<div class="grid">
+    <div class="col mt-2">
+        <p-table [value]="heroes | slice:0" responsiveLayout="scroll"> <!-- heroes és una variable de ordenar.component i el pipe Ordenar --> <!-- Hi havia un problema i és que, sense posar l'slice:0, identificava les dues taules iguals i a l'ordenar, ordenava les dues taules -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th> <!-- Utiltizem el table PrimeNg perquè permeti ordenare al fer click en aquests camps -->
+                    <th pSortableColumn="vuela">Vuela <p-sortIcon field="vuela"></p-sortIcon></th>
+                    <th pSortableColumn="color">Color <p-sortIcon field="color"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-heroe>
+                <tr>
+                    <td>{{heroe.nombre}}</td>
+                    <td>{{heroe.vuela | vuela | titlecase }}</td> <!-- Crido al Pipe vuela creat a Pipes -->
+                    <td>{{heroe.color}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+
